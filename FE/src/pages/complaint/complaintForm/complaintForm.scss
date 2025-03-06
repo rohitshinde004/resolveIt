@@ -46,7 +46,11 @@
         .fileInput {
           border: 1px solid #c4c4c4;
           padding: 8.5px 14px;
-          border-radius: 8px;
+          border-radius: 4px;
+          &:focus {
+            border-color: #ffc01d !important;
+            border-width: 2px !important;
+          }
         }
       }
       .pincodeAddressWrapper {

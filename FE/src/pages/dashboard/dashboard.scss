@@ -23,7 +23,7 @@
       width: 30%;
       padding: 2.5% 0;
       .statsCardWrapper {
-        padding: 10px 0;
+        padding: 35px 0;
         @extend .flexColumn;
         align-items: center;
         .statsCard {
@@ -56,8 +56,11 @@
       width: 70%;
       padding: 2.5% 0;
       .complaintContainer {
+        @extend .flex;
+        justify-content: center;
         .complaintCardWrapper {
           @extend .flex;
+          width: 90%;
           justify-content: space-evenly;
         }
       }
