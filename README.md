@@ -1,3 +1,9 @@
+# Resolve It - Complaint Management System 🚧
+
+## Overview
+**Resolve It** is a complaint management system built using the **MERN stack (MongoDB, Express.js, React.js, Node.js)**. The platform allows users to report **road-related complaints** with images, and **Area Admins** can take necessary actions and respond to users.
+
+---
 ## Features ✨
 - ✅ **Submit Road Complaints** with images
 - ✅ **View Complaint Status** (Pending, In Progress, Resolved)
