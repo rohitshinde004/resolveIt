@@ -1,0 +1,15 @@
+@import "../../assets/styles/global.scss";
+@import "../../assets/styles/variable.scss";
+.parentContainer {
+  height: 100%;
+  .containerWrapper {
+    height: calc(100% - 80px);
+    @extend .flex;
+    .contentWrapper {
+      width: calc(100% - 290px);
+      padding: 20px 30px;
+      height: calc(100% - 40px);
+      // background-color: #f2f2f2;
+    }
+  }
+}

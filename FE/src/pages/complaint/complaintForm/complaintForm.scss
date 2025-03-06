@@ -1,0 +1,75 @@
+@import "../../../assets/styles/global.scss";
+@import "../../../assets/styles/variable.scss";
+
+.formWrapper {
+  height: 100%;
+  .formHeader {
+    @extend .flexColumn;
+    .formHeadingText {
+      font-size: 32px;
+      font-family: $font-montserrat-bold;
+      margin-bottom: 10px;
+    }
+    .subHeading {
+      font-size: 14px;
+      font-family: $font-montserrat-medium;
+    }
+  }
+  .complaintFromWrapper {
+    padding: 30px 0;
+    height: 80%;
+    .formContainer {
+      height: 100%;
+      @extend .flexColumn;
+      .TextBoxConatiner {
+        @extend .flexColumn;
+        margin-bottom: 10px;
+        width: 48%;
+
+        .subHeading {
+          font-size: 14px;
+          font-family: $font-montserrat-medium;
+          margin-bottom: 5px;
+        }
+        .error {
+          color: #d62f2f;
+          font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+          font-weight: 400;
+          font-size: 0.75rem;
+          line-height: 1.66;
+          letter-spacing: 0.03333em;
+          text-align: left;
+          margin-top: 4px;
+          margin-left: 14px;
+          margin-right: 14px;
+        }
+        .fileInput {
+          border: 1px solid #c4c4c4;
+          padding: 8.5px 14px;
+          border-radius: 8px;
+        }
+      }
+      .pincodeAddressWrapper {
+        @extend .flex;
+        justify-content: space-between;
+      }
+      .TextBoxConatinerDescription {
+        @extend .flexColumn;
+        margin-bottom: 10px;
+        // width: 48%;
+
+        .subHeading {
+          font-size: 14px;
+          font-family: $font-montserrat-medium;
+          margin-bottom: 5px;
+        }
+      }
+      .submitButton {
+        background-color: #ffc01d;
+        font-family: $font-montserrat-medium;
+        // padding: 0px 15px !important;
+        font-size: 14px;
+      }
+    }
+  }
+}

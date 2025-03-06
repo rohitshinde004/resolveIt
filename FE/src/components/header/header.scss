@@ -1,0 +1,38 @@
+@import "../../assets/styles/global.scss";
+@import "../../assets/styles/variable.scss";
+
+.headerContainer {
+  height: 79px;
+  @extend .alignCenter;
+  padding: 0 10px;
+  justify-content: space-between;
+  width: calc(100% - 20px);
+  background: #fff8e7;
+  // box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid #ddd;
+  .logoTextWrapper {
+    @extend .alignCenter;
+    .avtar {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      background-color: #ffc01d;
+    }
+    .headerText {
+      font-family: $font-montserrat-bold;
+      color: black;
+      font-size: 24px;
+      padding-left: 20px;
+    }
+  }
+  .buttonWrapper {
+    .logOutBtn {
+      background-color: transparent;
+      border: 1px solid #000 !important;
+      color: #000;
+      padding: 0px 15px !important;
+      font-family: "montserratMedium";
+      font-size: 14px;
+    }
+  }
+}

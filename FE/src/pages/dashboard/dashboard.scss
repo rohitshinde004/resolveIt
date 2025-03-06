@@ -1,0 +1,66 @@
+@import "../../assets/styles/global.scss";
+@import "../../assets/styles/variable.scss";
+.dashboardWrapper {
+  height: 100%;
+  .containWrapper {
+    height: calc(100% - 30%);
+    font-family: $font-montserrat-regular;
+    @extend .flex;
+    .headerWrapper {
+      @extend .flexColumn;
+      align-items: center;
+      .headerText {
+        font-size: 28px;
+        font-family: $font-montserrat-bold;
+        padding-bottom: 8px;
+      }
+      .subHeadingText {
+        font-size: 16px;
+        font-family: $font-montserrat-medium;
+      }
+    }
+    .statsWrapper {
+      width: 30%;
+      padding: 2.5% 0;
+      .statsCardWrapper {
+        padding: 10px 0;
+        @extend .flexColumn;
+        align-items: center;
+        .statsCard {
+          background-color: white;
+          height: 110px;
+          @extend .flexColumn;
+          width: 250px;
+          padding: 10px 10px;
+          border-radius: 8px;
+          border: 1px solid #ddd;
+          box-shadow: 1px 1px 8px 0px #0000001f;
+          margin: 10px 0;
+          justify-content: space-around;
+          padding-left: 20px;
+          .cardHeader {
+            color: #00000080;
+            font-size: 16px;
+            font-family: $font-montserrat-medium;
+            padding-bottom: 5px;
+          }
+          .cardValue {
+            font-size: 26px;
+            font-family: $font-montserrat-medium;
+            padding-bottom: 5px;
+          }
+        }
+      }
+    }
+    .assigneeWrapper {
+      width: 70%;
+      padding: 2.5% 0;
+      .complaintContainer {
+        .complaintCardWrapper {
+          @extend .flex;
+          justify-content: space-evenly;
+        }
+      }
+    }
+  }
+}

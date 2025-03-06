@@ -1,0 +1,30 @@
+@import "../../assets/styles/global.scss";
+@import "../../assets/styles/variable.scss";
+.complaintPageParent {
+  .headerWrapper {
+    @extend .flex;
+    justify-content: space-between;
+    align-items: center;
+    .headingText {
+      font-size: 32px;
+      font-family: $font-montserrat-bold;
+    }
+    .searchBarButtonWrapper {
+      @extend .flex;
+      justify-content: space-between;
+      align-items: center;
+      .serachBar {
+        width: 50%;
+      }
+      .complaintBtn {
+        background-color: #ffc01d;
+        padding: 0px 15px !important;
+        font-family: $font-montserrat-medium;
+        font-size: 14px;
+      }
+    }
+  }
+  .complaitnContainer {
+    padding: 2.5% 0;
+  }
+}

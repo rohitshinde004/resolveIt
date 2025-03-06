@@ -1,0 +1,45 @@
+@import "../../../../assets/styles/global.scss";
+@import "../../../../assets/styles/variable.scss";
+
+.userCardWrapper {
+  // background: #efefef;
+  height: 25%;
+  padding: 0 5%;
+  border-radius: 8px;
+  // border: 1px solid #ddd;
+  // box-shadow: 0 4px 8px #0003;
+  //   border: 1px solid #0000000d;
+  // box-shadow: 1px 1px 8px 0px #0000001f;
+  @extend .flex;
+  align-items: center;
+  .avtarWrapper {
+    .avtar {
+      max-width: 100px;
+      border-radius: 50%;
+    }
+  }
+  .userDetailsWrapper {
+    @extend .flexColumn;
+    margin-left: 20px;
+    justify-content: space-evenly;
+    height: 80%;
+
+    .userName {
+      font-size: 20px;
+      font-family: $font-montserrat-bold;
+    }
+    .role {
+      font-size: 16px;
+      font-family: $font-montserrat-medium;
+      //   margin: 8px 0;
+      background-color: white;
+      width: fit-content;
+      padding: 0 5px;
+      border-radius: 5px;
+    }
+    .welcomeText {
+      font-size: 16px;
+      font-family: $font-montserrat-regular;
+    }
+  }
+}

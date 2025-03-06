@@ -1,0 +1,23 @@
+@import "../../assets/styles/global.scss";
+@import "../../assets/styles/variable.scss";
+
+.selectedIcon {
+  background-color: #ffc01d;
+  margin-right: 15px;
+  padding: 5px;
+  border-radius: 32%;
+  min-width: 1px !important;
+  transition: background-color 0.6s ease, margin-right 0.6s ease, padding 0.6s ease, border-radius 0.6s ease;
+}
+
+.selectedText {
+  color: #ffc01d;
+  transition: color 0.6s ease;
+}
+
+.selectedItem {
+  background-color: black !important;
+  border-top-left-radius: 30px !important;
+  border-bottom-left-radius: 30px !important;
+  transition: background-color 0.6s ease, border-top-left-radius 0.6s ease, border-bottom-left-radius 0.6s ease;
+}

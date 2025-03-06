@@ -1,0 +1,42 @@
+@import "../../../../assets/styles/global.scss";
+@import "../../../../assets/styles/variable.scss";
+
+.complaintCardParent {
+  @extend .flexColumn;
+  background-color: white;
+  height: 260px;
+  width: 200px;
+  padding: 10px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  align-items: center;
+  margin: 20px 0;
+  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.1215686275);
+  justify-content: space-around;
+  .imageWrapper {
+    height: 45%;
+    width: 50%;
+    .complaintImg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .complaintDetailsWrapper {
+    @extend .flexColumn;
+    align-items: center;
+    .complaintTitle {
+      font-family: $font-montserrat-medium;
+      font-size: 16px;
+    }
+    .complaintArea {
+      font-family: $font-montserrat-medium;
+      font-size: 16px;
+      color: #00000080;
+    }
+    .complaintStatus {
+      font-family: $font-montserrat-medium;
+      font-size: 22px;
+      margin: 10px 0;
+    }
+  }
+}
