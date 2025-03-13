@@ -19,19 +19,19 @@ const Sidebar: React.FC = () => {
     {
       text: "Dashboard",
       icon: <img src={dasboardIcon} alt="icon" style={{ height: "22px" }} />,
-      navigator: "dashboard",
+      navigator: "home/dashboard",
       selected: false,
     },
     {
       text: "Complaint",
       icon: <img src={complaintIcon} alt="icon" style={{ height: "22px" }} />,
-      navigator: "complaint",
+      navigator: "home/complaint",
       selected: false,
     },
     {
       text: "File Complaint",
       icon: <PostAddIcon style={{ fontSize: "22px",color:'black' }} />,
-      navigator: "file-complaint",
+      navigator: "home/file-complaint",
       selected: false,
     },
   ]);

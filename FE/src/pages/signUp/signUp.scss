@@ -1,0 +1,63 @@
+@import "../../assets/styles/global.scss";
+@import "../../assets/styles/variable.scss";
+
+.signUpParent {
+  padding: 30px;
+  height: calc(100% - 60px);
+  @extend .flexJustifyBetween;
+  //   width: 100%;
+  .formWrapper {
+    width: 45%;
+    .formHeader {
+      .headerText {
+        font-size: 38px;
+        font-family: $font-montserrat-bold;
+        margin-bottom: 20px;
+      }
+    }
+    .signUpContainer {
+      height: 90%;
+      @extend .flex;
+      justify-content: space-between;
+      .formContainer {
+        height: 100%;
+        width: 100%;
+        .signUpForm {
+          height: 100%;
+          @extend .flexColumn;
+          justify-content: space-around;
+          .TextBoxConatiner {
+            @extend .flexColumn;
+            .subHeading {
+              font-size: 14px;
+              font-family: $font-montserrat-medium;
+              margin-bottom: 5px;
+            }
+          }
+          .multiTextBoxContainer {
+            @extend .flex;
+            justify-content: space-between;
+            .TextBoxConatiner {
+              // @extend .flexColumn;
+              width: 48%;
+            }
+          }
+          .submitButton {
+            background-color: #ffc01d;
+            font-family: $font-montserrat-medium;
+            // padding: 0px 15px !important;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  .imageWrapper {
+    // width: 50%;
+    height: 100%;
+    .signUpImg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
