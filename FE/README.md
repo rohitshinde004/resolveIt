@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
+
+ResolveIt is a project management tool designed to help teams collaborate effectively, track progress, and resolve issues efficiently. This project is built using React and follows modern web development practices.
 
 ## Available Scripts
 
@@ -44,3 +46,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+Visit the [ResolveIt GitHub Repository](https://github.com/your-repo/resolveIt-project) for more details about the project.
