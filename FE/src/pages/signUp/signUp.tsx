@@ -4,8 +4,11 @@ import "./signUp.scss";
 import TextBox from "../../components/common/textBox/textfield";
 import { CommonButton } from "../../components/common/commonButton/commonButton";
 import signUpImg from "../../assets/icons/WorkflowTeamwork.svg";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const SignUp: React.FC = () => {
+  const navigate = useNavigate();
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -32,6 +35,32 @@ export const SignUp: React.FC = () => {
       .required("Confirm Password is required"),
   });
 
+  const handleSignUp = async (values: typeof initialValues) => {
+    try {
+      const response = await axios.post("http://localhost:8080/auth/signup", {
+        firstName: values.firstName,
+        lastName: values.lastName,
+        email: values.email,
+        role: "Citizen", // Assuming role is always "Citizen" for this form
+        address: values.address,
+        pincode: values.pincode,
+        phno: values.phoneNo,
+        password: values.password,
+      });
+      console.log("Sign-up successful:", response.data);
+      alert("Sign-up successful!");
+      navigate("/login");
+    } catch (error: any) {
+      console.error(
+        "Error during sign-up:",
+        error.response?.data || error.message
+      );
+      alert(
+        "Sign-up failed: " + (error.response?.data?.message || error.message)
+      );
+    }
+  };
+
   return (
     <div className="signUpParent">
       <div className="formWrapper">
@@ -41,7 +70,7 @@ export const SignUp: React.FC = () => {
         <div className="signUpContainer">
           <div className="formContainer">
             <Formik
-              onSubmit={() => {}}
+              onSubmit={handleSignUp}
               initialValues={initialValues}
               validationSchema={validationSchema}
             >
@@ -158,12 +187,11 @@ export const SignUp: React.FC = () => {
               )}
             </Formik>
           </div>
-         
         </div>
       </div>
       <div className="imageWrapper">
-            <img src={signUpImg} alt="" className="signUpImg" />
-          </div>
+        <img src={signUpImg} alt="" className="signUpImg" />
+      </div>
     </div>
   );
 };
