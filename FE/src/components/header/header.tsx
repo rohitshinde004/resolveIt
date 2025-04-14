@@ -1,7 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { CommonButton } from "../common/commonButton/commonButton";
 import "./header.scss";
 
 export const Header = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
   return (
     <div className="headerContainer">
       <div className="logoTextWrapper">
@@ -10,7 +16,7 @@ export const Header = () => {
       </div>
       <div className="buttonWrapper">
         <CommonButton
-          onClickCallBack={() => {}}
+          onClickCallBack={handleLogout}
           buttonLabel={"Log Out"}
           className={"logOutBtn"}
         />

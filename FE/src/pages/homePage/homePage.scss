@@ -9,6 +9,8 @@
       width: calc(100% - 290px);
       padding: 20px 30px;
       height: calc(100% - 40px);
+      overflow: auto;
+      scrollbar-width: none;
       // background-color: #f2f2f2;
     }
   }

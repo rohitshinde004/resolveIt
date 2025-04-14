@@ -3,8 +3,10 @@ import "./complaintForm.scss";
 import TextBox from "../../../components/common/textBox/textfield";
 import * as Yup from "yup";
 import { CommonButton } from "../../../components/common/commonButton/commonButton";
+import Instance from "../../../utils/axios";
 
 export const ComplaintForm = () => {
+  const userInfo: any = JSON.parse(localStorage.getItem("user") || "{}");
   const SUPPORTED_FORMATS = [
     "image/jpg",
     "image/jpeg",
@@ -34,6 +36,30 @@ export const ComplaintForm = () => {
     address: Yup.string().required("Required"),
   });
 
+  const handleSubmit = async (values: any) => {
+    const formData = new FormData();
+    formData.append("topic", values.topic);
+    formData.append("desc", values.description);
+    formData.append("pincode", values.pincode);
+    formData.append("location", values.address);
+    formData.append("userId", userInfo._id); // Ensure userInfo._id is accessible
+    formData.append("adminId", "65d3a5f2c45b3b00123abcd1"); // Replace with dynamic adminId if needed
+    if (values.image) {
+      formData.append("image", values.image);
+    }
+
+    try {
+      const response = await Instance.post("complaint/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("API Response:", response.data);
+    } catch (error) {
+      console.error("API Error:", error);
+    }
+  };
+
   return (
     <div className="formWrapper">
       <div className="formHeader">
@@ -43,7 +69,7 @@ export const ComplaintForm = () => {
       <div className="complaintFromWrapper">
         <Formik
           onSubmit={(value) => {
-            console.log("Form Submitted", value);
+            handleSubmit(value);
           }}
           initialValues={initialValues}
           validationSchema={validationSchema}

@@ -25,6 +25,11 @@
     url("../fonts/MontserratAlternates-Regular.ttf");
 }
 
+@font-face {
+  font-family: "Righteous";
+  src: local("Righteous"), url("../fonts/Righteous-Regular.ttf");
+}
+
 //fonts variables
 
 $font-montserrat-bold: "montserratBold";
@@ -32,6 +37,7 @@ $font-montserrat-regular: "montserratRegular";
 $font-montserrat-light: "montserratLight";
 $font-montserrat-medium: "montserratMedium";
 $font-montserrat-alternates: "montserratAlternates";
+$font-righteous: "Righteous";
 
 //color variables
 $background-color: #ffffff;

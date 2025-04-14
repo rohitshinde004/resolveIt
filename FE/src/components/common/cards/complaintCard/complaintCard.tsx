@@ -6,12 +6,13 @@ interface ComplaintPropsInterface {
   status: string;
   date?: string;
   area: string;
+  onClick?: () => void;
 }
 
 export const ComplaintCard = (props: ComplaintPropsInterface) => {
-  const { title, description, status, date, area } = props;
+  const { title, description, status, date, area, onClick } = props;
   return (
-    <div className="complaintCardParent">
+    <div className="complaintCardParent" onClick={onClick}>
       <div className="imageWrapper">
         <img src={complaintImg} alt="" className="complaintImg" />
       </div>
