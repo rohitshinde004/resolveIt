@@ -37,11 +37,12 @@ const Sidebar: React.FC = () => {
   ]);
 
   useEffect(() => {
-    const path = location.pathname.split("/")[1];
+    const path = location.pathname.replace(/^\//, ""); // Remove leading slash
+
     setNavItems((prevItems) =>
       prevItems.map((item) => ({
         ...item,
-        selected: item.navigator === path,
+        selected: path.startsWith(item.navigator), // Match navigator with the start of the path
       }))
     );
   }, [location]);
@@ -50,10 +51,6 @@ const Sidebar: React.FC = () => {
     navigate(`/${nav}`);
   };
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
 
   return (
     <div

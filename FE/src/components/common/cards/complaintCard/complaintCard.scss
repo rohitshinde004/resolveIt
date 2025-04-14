@@ -5,20 +5,42 @@
   @extend .flexColumn;
   background-color: white;
   height: 260px;
-  width: 200px;
+  min-width: 200px;
   padding: 10px 10px;
   border-radius: 8px;
   border: 1px solid #ddd;
   align-items: center;
-  margin: 45px 0;
+  margin: 45px 10px;
   box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.1215686275);
   justify-content: space-around;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-color: #ffc01d;
+    
+    .complaintTitle {
+      color: #ffc01d;
+    }
+    
+    .complaintImg {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+  }
+
   .imageWrapper {
     height: 45%;
     width: 50%;
+    overflow: hidden;
+    border-radius: 4px;
     .complaintImg {
       height: 100%;
       width: 100%;
+      object-fit: fill;
+      transition: transform 0.3s ease;
     }
   }
   .complaintDetailsWrapper {
@@ -27,6 +49,7 @@
     .complaintTitle {
       font-family: $font-montserrat-medium;
       font-size: 16px;
+      transition: color 0.3s ease;
     }
     .complaintArea {
       font-family: $font-montserrat-medium;

@@ -36,7 +36,7 @@ export const ComplaintPage = () => {
         <div className="searchBarButtonWrapper">
           <SearchField className="serachBar" />
           <CommonButton
-            onClickCallBack={() => {navigate("/file-complaint")}}
+            onClickCallBack={() => {navigate("/home/file-complaint")}}
             buttonLabel={"File Complaint"}
             className={"complaintBtn"}
           />

@@ -38,6 +38,14 @@
           margin: 10px 0;
           justify-content: space-around;
           padding-left: 20px;
+          transition: all 0.3s ease;
+
+          &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-color: #ffc01d;
+            transition: all 0.3s ease;
+          }
           .cardHeader {
             color: #00000080;
             font-size: 16px;
@@ -62,6 +70,8 @@
           @extend .flex;
           width: 90%;
           justify-content: space-evenly;
+          overflow: auto;
+          scrollbar-width: none;
         }
       }
     }

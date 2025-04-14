@@ -36,9 +36,12 @@ export const LoginPage: React.FC = () => {
       .post(LoginApiUrl, values)
       .then((res) => {
         console.log(res);
+        const userInfo = res.data.data;
+        localStorage.setItem("user", JSON.stringify(userInfo));
+        navigate("/home/dashboard");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
