@@ -2,6 +2,8 @@ import express from "express";
 import AuthRoutes from "./routes/AuthRoutes";
 import UserRoutes from "./routes/UserRoutes";
 import complaintRoutes from "./routes/ComplaintRoutes";
+import AdminRoutes from "./routes/AdminRouter";
+import chatRoutes from "./routes/ChatRoutes";
 import bodyParser from "body-parser";
 import packageJSON from "../package.json";
 import dotenv from "dotenv";
@@ -33,6 +35,8 @@ app.get("/health", (req, res) => {
 app.use("/auth", AuthRoutes);
 app.use("/user", UserRoutes);
 app.use("/complaint", complaintRoutes);
+app.use("/admin", AdminRoutes);
+app.use("/api/chats", chatRoutes);
 
 app.listen(port, () => {
   console.log(`${packageJSON.name} is running on port ${port}`);

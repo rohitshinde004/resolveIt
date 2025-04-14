@@ -1,10 +1,18 @@
 import { Router } from 'express';
 import ComplaintController from '../controllers/ComplaintController';
-import upload from '../middlewares/upload';
+import { upload, compressAndSaveImage } from '../middlewares/upload';
 
 const router: Router = Router();
 
-router.post('/', upload.single('image'), ComplaintController.createComplaint);
+router.post(
+    '/',
+    upload.single('image'),
+    compressAndSaveImage, 
+    ComplaintController.createComplaint
+);
+
+router.get('/', ComplaintController.getComplaint);
 router.get('/:id', ComplaintController.getComplaintById);
+router.patch('/:id/status', ComplaintController.updateComplaintStatus);
 
 export default router;

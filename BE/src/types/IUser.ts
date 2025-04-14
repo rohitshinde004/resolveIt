@@ -8,7 +8,7 @@ interface IUser extends Document {
     email: string;
     role: UserRole;
     address: string;
-    pincode: string;
+    pincode: number;
     phno: string;
     password: string;
     comparePassword(candidatePassword: string): Promise<boolean>;

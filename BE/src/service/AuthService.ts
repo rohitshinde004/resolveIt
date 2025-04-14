@@ -6,7 +6,7 @@ import UserRole from '../types/UserRole';
 class AuthService {
     // Function to sign up a new user
     public signUp = async (userDTO: UserDTO, password: string): Promise<IUser> => {
-        const { firstName, lastName, email, role, address, pincode, phno } = userDTO;
+        const { firstName, lastName, email, address, pincode, phno } = userDTO;
 
         // Check if a user with the same email already exists
         const existingUser = await User.findOne({ email });
@@ -19,7 +19,7 @@ class AuthService {
             firstName,
             lastName,
             email,
-            role: role === UserRole.Admin ? UserRole.Admin : UserRole.Citizen,
+            role: UserRole.Citizen,
             address,
             pincode,
             phno,

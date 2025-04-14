@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import ComplaintService from '../service/ComplaintService';
 import ComplaintDTO from '../DTO/ComplaintDTO';
 import { compare } from 'bcrypt';
+import ComplaintStatus from '../types/ComplaintStatus';
 
 class ComplaintController {
     private complaintService: ComplaintService;
@@ -39,6 +40,35 @@ class ComplaintController {
             res.status(500).json({ message: error.message });
         }
     }
+
+    public getComplaint = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { topic, pincode, status, userId } = req.query;
+            const complaints = await this.complaintService.getComplaints(topic as string, parseInt(pincode as string), status as ComplaintStatus, userId as string);
+            res.status(200).json(complaints);
+        } catch (error: any) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+
+    public updateComplaintStatus = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const { id } = req.params;
+            const { status } = req.body;
+
+            if (!status || !Object.values(ComplaintStatus).includes(status)) {
+                res.status(400).send({ error: 'Invalid or missing status' });
+                return;
+            }
+
+            const complaintService = new ComplaintService();
+            const updatedComplaint = await complaintService.updateComplaintStatus(Number(id), status);
+
+            res.status(200).send(updatedComplaint);
+        } catch (error: any) {
+            res.status(500).send({ error: error.message });
+        }
+    };
 }
 
 export default new ComplaintController();

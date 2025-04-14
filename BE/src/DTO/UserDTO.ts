@@ -7,7 +7,7 @@ class UserDTO {
     email: string;
     role: string;
     address: string;
-    pincode: string;
+    pincode: number;
     phno: string;
 
     constructor(user: IUser) {

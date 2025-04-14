@@ -13,7 +13,7 @@ const UserSchema: Schema<IUser> = new Schema({
     password: { type: String, required: true },
     role: { type: String, required: true, enum: UserRole },
     address: { type: String, required: true },
-    pincode: { type: String, required: true },
+    pincode: { type: Number, required: true },
     phno: { type: String, required: true },
 }, { autoIndex: true });
 
