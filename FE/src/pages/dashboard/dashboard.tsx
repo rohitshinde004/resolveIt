@@ -38,8 +38,8 @@ export const Dasboard = () => {
   return (
     <div className="dashboardWrapper">
       <UserCard
-        name={"Rohit Shinde"}
-        role={"Admin"}
+        name={userInfo.firstName + " " + userInfo.lastName}
+        role={userInfo.role}
         avtar={
           "https://m.media-amazon.com/images/I/61qFXFR1nnL._AC_UY1100_.jpg"
         }
