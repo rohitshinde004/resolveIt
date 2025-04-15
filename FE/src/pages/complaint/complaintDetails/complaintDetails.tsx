@@ -8,6 +8,10 @@ import {
   Chip,
   CircularProgress,
   Button,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
 } from "@mui/material";
 import "./complaintDetails.scss";
 import Instance from "../../../utils/axios";
@@ -35,6 +39,8 @@ export const ComplaintDetails = () => {
   const [searchParams] = useSearchParams();
   const [complaint, setComplaint] = useState<ComplaintData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [userRole, setUserRole] = useState<string>("ADMIN");
+  const statusOptions = ["Pending", "In Progress", "Resolved"];
 
   const fetchComplaintDetails = async () => {
     try {
@@ -53,8 +59,29 @@ export const ComplaintDetails = () => {
     }
   };
 
+  const fetchUserRole = async () => {
+    try {
+      const response = await Instance.get("user/role");
+      setUserRole(response.data.role);
+    } catch (error) {
+      console.error("Error fetching user role:", error);
+    }
+  };
+
+  const handleStatusChange = async (newStatus: string) => {
+    try {
+      await Instance.put(`complaint/${complaint?._id}/status`, {
+        status: newStatus,
+      });
+      setComplaint(prev => prev ? { ...prev, status: newStatus } : null);
+    } catch (error) {
+      console.error("Error updating complaint status:", error);
+    }
+  };
+
   useEffect(() => {
     fetchComplaintDetails();
+    fetchUserRole();
   }, [searchParams]);
 
   const convertBufferToBase64 = (imageData: {
@@ -118,15 +145,38 @@ export const ComplaintDetails = () => {
             <Typography variant="h4" gutterBottom>
               Complaint #{complaint.id}
             </Typography>
-            <Chip
-              label={complaint.status.toUpperCase()}
-              sx={{
-                backgroundColor: getStatusColor(complaint.status),
-                color: "white",
-                fontWeight: "bold",
-                mb: 2,
-              }}
-            />
+            {userRole === "ADMIN" ? (
+              <FormControl sx={{ minWidth: 200, mb: 2 }}>
+                <InputLabel>Status</InputLabel>
+                <Select
+                  value={complaint.status}
+                  label="Status"
+                  onChange={(e) => handleStatusChange(e.target.value)}
+                  sx={{
+                    backgroundColor: getStatusColor(complaint.status),
+                    color: "white",
+                    "& .MuiSelect-icon": { color: "white" },
+                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "white" },
+                  }}
+                >
+                  {statusOptions.map((status) => (
+                    <MenuItem key={status} value={status.toLowerCase()}>
+                      {status}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            ) : (
+              <Chip
+                label={complaint.status.toUpperCase()}
+                sx={{
+                  backgroundColor: getStatusColor(complaint.status),
+                  color: "white",
+                  fontWeight: "bold",
+                  mb: 2,
+                }}
+              />
+            )}
             <Typography variant="h6" gutterBottom>
               Topic: {complaint.topic}
             </Typography>
