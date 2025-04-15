@@ -14,5 +14,6 @@ router.post(
 router.get('/', ComplaintController.getComplaint);
 router.get('/:id', ComplaintController.getComplaintById);
 router.patch('/:id/status', ComplaintController.updateComplaintStatus);
+router.get('/user/:userId', ComplaintController.getComplaintsByUserId);
 
 export default router;

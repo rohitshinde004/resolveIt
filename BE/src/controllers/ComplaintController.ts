@@ -11,6 +11,7 @@ class ComplaintController {
         this.complaintService = new ComplaintService();
         this.createComplaint = this.createComplaint.bind(this);
         this.getComplaintById = this.getComplaintById.bind(this);
+        this.getComplaintsByUserId = this.getComplaintsByUserId.bind(this);
     }
 
     public createComplaint = async (req: Request, res: Response): Promise<void> => {
@@ -28,6 +29,7 @@ class ComplaintController {
 
     public getComplaintById = async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
+        console.log("Complaint ID:", id);
         const complaintId = parseInt(id);
         try {
             const complaint = await this.complaintService.getComplaintById(complaintId);
@@ -45,6 +47,15 @@ class ComplaintController {
         try {
             const { topic, pincode, status, userId } = req.query;
             const complaints = await this.complaintService.getComplaints(topic as string, parseInt(pincode as string), status as ComplaintStatus, userId as string);
+            res.status(200).json(complaints);
+        } catch (error: any) {
+            res.status(500).json({ message: error.message });
+        }
+    }
+    public getComplaintsByUserId = async (req: Request, res: Response): Promise<void> => {
+        const { userId } = req.params;
+        try {
+            const complaints = await this.complaintService.getComplaintsByUserId(userId);
             res.status(200).json(complaints);
         } catch (error: any) {
             res.status(500).json({ message: error.message });

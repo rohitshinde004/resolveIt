@@ -26,7 +26,7 @@ class AuthController {
         try {
             const { email, password } = req.body;
             const user = await this.authService.signIn(email, password);
-            res.status(200).send({ "message": "User signed in successfully" });
+            res.status(200).send({ "message": "User signed in successfully",data: user });
         } catch (error) {
             res.status(400).json({ message: (error as Error).message });
         }

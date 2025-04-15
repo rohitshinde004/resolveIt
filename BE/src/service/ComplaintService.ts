@@ -111,6 +111,14 @@ class ComplaintService {
             throw new Error('Error updating complaint status: ' + error.message);
         }
     }
+    public getComplaintsByUserId = async (userId: string): Promise<IComplaint[]> => {
+        try {
+            const complaints = await Complaint.find({ userId });
+            return complaints;
+        } catch (error: any) {
+            throw new Error('Error fetching complaints: ' + error.message);
+        }
+    }
 }
 
 export default ComplaintService;
