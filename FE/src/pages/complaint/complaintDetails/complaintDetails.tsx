@@ -7,15 +7,11 @@ import {
   Grid,
   Chip,
   CircularProgress,
-  Button,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
 } from "@mui/material";
 import "./complaintDetails.scss";
 import Instance from "../../../utils/axios";
 import { CommonButton } from "../../../components/common/commonButton/commonButton";
+import FilterAutocomplete from "../../../components/common/textBox/autoComplete";
 
 interface ComplaintData {
   _id: string;
@@ -36,10 +32,11 @@ interface ComplaintData {
 }
 
 export const ComplaintDetails = () => {
+  const userInfo: any = JSON.parse(localStorage.getItem("user") || "{}");
   const [searchParams] = useSearchParams();
   const [complaint, setComplaint] = useState<ComplaintData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [userRole, setUserRole] = useState<string>("ADMIN");
+  const [userRole, setUserRole] = useState<string>(userInfo.role);
   const statusOptions = ["Pending", "In Progress", "Resolved"];
 
   const fetchComplaintDetails = async () => {
@@ -68,12 +65,12 @@ export const ComplaintDetails = () => {
     }
   };
 
-  const handleStatusChange = async (newStatus: string) => {
+  const handleStatusChange = async (newStatus: any) => {
     try {
       await Instance.put(`complaint/${complaint?._id}/status`, {
         status: newStatus,
       });
-      setComplaint(prev => prev ? { ...prev, status: newStatus } : null);
+      setComplaint((prev) => (prev ? { ...prev, status: newStatus } : null));
     } catch (error) {
       console.error("Error updating complaint status:", error);
     }
@@ -146,26 +143,26 @@ export const ComplaintDetails = () => {
               Complaint #{complaint.id}
             </Typography>
             {userRole === "ADMIN" ? (
-              <FormControl sx={{ minWidth: 200, mb: 2 }}>
-                <InputLabel>Status</InputLabel>
-                <Select
-                  value={complaint.status}
-                  label="Status"
-                  onChange={(e) => handleStatusChange(e.target.value)}
-                  sx={{
-                    backgroundColor: getStatusColor(complaint.status),
-                    color: "white",
-                    "& .MuiSelect-icon": { color: "white" },
-                    "& .MuiOutlinedInput-notchedOutline": { borderColor: "white" },
-                  }}
-                >
-                  {statusOptions.map((status) => (
-                    <MenuItem key={status} value={status.toLowerCase()}>
-                      {status}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <FilterAutocomplete
+                label={"Status"}
+                option={statusOptions}
+                value={complaint.status} // Pass the current status as value
+                onChange={(event: any, newValue: string) => {
+                  console.log("Selected status:", newValue);
+                  complaint.status = newValue; // Update the status in the complaint object
+                 console.log("Updated complaint:", complaint);
+                  handleStatusChange(newValue); // Pass the new value to the handler
+                }}
+                
+                sx={{
+                  backgroundColor: getStatusColor(complaint.status),
+                  color: "white",
+                  "& .MuiSelect-icon": { color: "white" },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white",
+                  },
+                }}
+              />
             ) : (
               <Chip
                 label={complaint.status.toUpperCase()}
@@ -204,7 +201,11 @@ export const ComplaintDetails = () => {
               <Typography variant="body2">
                 Time: {new Date(complaint.date).toLocaleTimeString()}
               </Typography>
-              <CommonButton onClickCallBack={()=>{} } buttonLabel={"Reply"} className={"replyButton"}/>
+              <CommonButton
+                onClickCallBack={() => {}}
+                buttonLabel={"Reply"}
+                className={"replyButton"}
+              />
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>

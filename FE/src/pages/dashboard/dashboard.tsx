@@ -66,7 +66,11 @@ export const Dasboard = () => {
         </div>
         <div className="assigneeWrapper">
           <div className="headerWrapper">
-            <span className="headerText">Assigned Complaints</span>
+            <span className="headerText">
+              {userInfo.role === "ADMIN"
+                ? "Assigned Complaints"
+                : "Filed Complaints"}
+            </span>
             <span className="subHeadingText">
               View and manage complaints assigned to you
             </span>

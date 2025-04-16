@@ -80,6 +80,15 @@ class ComplaintController {
             res.status(500).send({ error: error.message });
         }
     };
+
+    public getPincode = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const pincode = await this.complaintService.getPincode();
+            res.status(200).json(pincode);
+        } catch (error: any) {
+            res.status(500).json({ message: error.message });
+        }
+    }
 }
 
 export default new ComplaintController();

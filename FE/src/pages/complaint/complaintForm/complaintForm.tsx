@@ -4,6 +4,9 @@ import TextBox from "../../../components/common/textBox/textfield";
 import * as Yup from "yup";
 import { CommonButton } from "../../../components/common/commonButton/commonButton";
 import Instance from "../../../utils/axios";
+import FormikDropDown from "../../../components/common/textBox/dropDown";
+import { useEffect, useState } from "react";
+import { getPincodeApiUrl } from "../../../constant/apiUrls";
 
 export const ComplaintForm = () => {
   const userInfo: any = JSON.parse(localStorage.getItem("user") || "{}");
@@ -35,7 +38,7 @@ export const ComplaintForm = () => {
     pincode: Yup.string().required("Required"),
     address: Yup.string().required("Required"),
   });
-
+  const [pincodes, setPincodes] = useState([]);
   const handleSubmit = async (values: any) => {
     const formData = new FormData();
     formData.append("topic", values.topic);
@@ -59,6 +62,18 @@ export const ComplaintForm = () => {
       console.error("API Error:", error);
     }
   };
+  useEffect(() => {
+    const fetchPincode = async () => {
+      try {
+        const response = await Instance.get(getPincodeApiUrl);
+        console.log("Pincodes:", response.data);
+        setPincodes(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchPincode();
+  }, []);
 
   return (
     <div className="formWrapper">
@@ -113,7 +128,7 @@ export const ComplaintForm = () => {
               <div className="pincodeAddressWrapper">
                 <div className="TextBoxConatiner">
                   <span className="subHeading">Pincode</span>
-                  <TextBox
+                  {/* <TextBox
                     className="textBox"
                     name="pincode"
                     onChangeCallBack={(value: string) => {
@@ -121,6 +136,16 @@ export const ComplaintForm = () => {
                     }}
                     formikRef={formik}
                     placeholder="Pincode"
+                  /> */}
+                  <FormikDropDown
+                    className="textBox"
+                    name="pincode"
+                    onChange={(value: string) => {
+                      formik.setFieldValue("pincode", value);
+                    }}
+                    formikRef={formik}
+                    placeholder="Pincode"
+                    option={pincodes}
                   />
                 </div>
                 <div className="TextBoxConatiner">

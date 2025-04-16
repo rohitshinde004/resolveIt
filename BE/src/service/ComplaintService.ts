@@ -6,6 +6,8 @@ import AdminService from './AdminService';
 import UserDTO from '../DTO/UserDTO';
 import IUser from '../types/IUser';
 import ChatService from './ChatService';
+import User from '../models/User';
+import UserRole from '../types/UserRole';
 
 class ComplaintService {
     // Function to create a new complaint
@@ -113,11 +115,23 @@ class ComplaintService {
     }
     public getComplaintsByUserId = async (userId: string): Promise<IComplaint[]> => {
         try {
-            const complaints = await Complaint.find({ userId });
+            const complaints = await  Complaint.find({ $or: [{ userId: userId }, { adminId: userId }] });
             return complaints;
         } catch (error: any) {
             throw new Error('Error fetching complaints: ' + error.message);
         }
+    }
+    public getPincode = async (): Promise<string[]> => {
+        try {
+            const getadmin = await User.find({ role: UserRole.Admin });
+            // Extract pincodes from the admin data
+            const pincodes = getadmin.map((admin: IUser) => admin.pincode.toString());
+            return pincodes;
+        }
+        catch (error: any) {
+            throw new Error('Error fetching pincodes: ' + error.message);
+        }
+
     }
 }
 

@@ -15,5 +15,6 @@ router.get('/', ComplaintController.getComplaint);
 router.get('/:id', ComplaintController.getComplaintById);
 router.patch('/:id/status', ComplaintController.updateComplaintStatus);
 router.get('/user/:userId', ComplaintController.getComplaintsByUserId);
+router.get('/get/pincode', ComplaintController.getPincode);
 
 export default router;
