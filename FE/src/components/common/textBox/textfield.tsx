@@ -44,7 +44,6 @@ const TextBox = (props: any) => {
       label={label}
       inputProps={{ min, max }}
       InputProps={InputProps}
-     // inputProps={{ min: minDate && dayjs(minDate).format('YYYY-MM-DD') }}
       placeholder={placeholder}
       value={value}
       defaultValue={defaultValue}

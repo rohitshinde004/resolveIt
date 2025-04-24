@@ -45,8 +45,8 @@ class ComplaintController {
 
     public getComplaint = async (req: Request, res: Response): Promise<void> => {
         try {
-            const { topic, pincode, status, userId } = req.query;
-            const complaints = await this.complaintService.getComplaints(topic as string, parseInt(pincode as string), status as ComplaintStatus, userId as string);
+            const { topic, pincode, status, userId, adminId } = req.query;
+            const complaints = await this.complaintService.getComplaints(topic as string, parseInt(pincode as string), status as ComplaintStatus, userId as string, adminId as string);
             res.status(200).json(complaints);
         } catch (error: any) {
             res.status(500).json({ message: error.message });

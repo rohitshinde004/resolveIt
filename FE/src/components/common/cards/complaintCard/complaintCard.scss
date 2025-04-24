@@ -6,6 +6,7 @@
   background-color: white;
   height: 260px;
   min-width: 200px;
+  max-width: 230px;
   padding: 10px 10px;
   border-radius: 8px;
   border: 1px solid #ddd;
@@ -15,16 +16,16 @@
   justify-content: space-around;
   cursor: pointer;
   transition: all 0.3s ease;
-  
+
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     border-color: #ffc01d;
-    
+
     .complaintTitle {
       color: #ffc01d;
     }
-    
+
     .complaintImg {
       transform: scale(1.05);
       transition: transform 0.3s ease;

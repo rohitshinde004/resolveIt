@@ -54,7 +54,7 @@ class ComplaintService {
     }
 
     // Function to get all complaints
-    public getComplaints = async (topic: string, pincode: number, status: ComplaintStatus, userId: string): Promise<IComplaint[]> => {
+    public getComplaints = async (topic: string, pincode: number, status: ComplaintStatus, userId: string, adminId:string): Promise<IComplaint[]> => {
         try {
             const query: any = {};
 
@@ -74,6 +74,9 @@ class ComplaintService {
             }
             if (userId) {
                 query.userId = userId;
+            }
+            if (adminId) {
+                query.adminId = adminId;
             }
 
             console.log('query:', query);

@@ -4,5 +4,24 @@
   padding: 0px 15px !important;
   font-family: "montserratMedium";
   font-size: 14px;
-    margin-top: 30px !important;
+  margin-top: 30px !important;
+}
+.commentTextBox {
+  width: 100%;
+  margin: 10px 0px !important;
+  border-radius: 15px !important;
+  .MuiInputBase-root{
+    border-radius: 28px !important;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    // border-radius: 15px !important;
+  }
+  .chatIconColor {
+    color: black !important;
+  }
+}
+.statusDropDown{
+  width: 50%;
+  margin: 10px 0px !important;
+  border-radius: 15px !important;
 }

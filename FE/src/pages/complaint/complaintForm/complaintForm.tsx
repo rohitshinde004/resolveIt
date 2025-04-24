@@ -83,8 +83,9 @@ export const ComplaintForm = () => {
       </div>
       <div className="complaintFromWrapper">
         <Formik
-          onSubmit={(value) => {
-            handleSubmit(value);
+          onSubmit={async (value, { resetForm }) => {
+            await handleSubmit(value);
+            resetForm();
           }}
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -100,6 +101,7 @@ export const ComplaintForm = () => {
                     formik.setFieldValue("topic", value);
                   }}
                   formikRef={formik}
+                  value={formik.values.topic}
                   placeholder="Topic"
                 />
               </div>
@@ -110,6 +112,7 @@ export const ComplaintForm = () => {
                   name="image"
                   accept="image/jpg, image/jpeg, image/png, image/gif"
                   className="fileInput"
+                  // value={formik.values.image || ""}
                   onChange={(event) => {
                     if (event.target.files && event.target.files.length > 0) {
                       const file = event.target.files[0];
@@ -128,15 +131,6 @@ export const ComplaintForm = () => {
               <div className="pincodeAddressWrapper">
                 <div className="TextBoxConatiner">
                   <span className="subHeading">Pincode</span>
-                  {/* <TextBox
-                    className="textBox"
-                    name="pincode"
-                    onChangeCallBack={(value: string) => {
-                      formik.setFieldValue("pincode", value);
-                    }}
-                    formikRef={formik}
-                    placeholder="Pincode"
-                  /> */}
                   <FormikDropDown
                     className="textBox"
                     name="pincode"
@@ -146,6 +140,7 @@ export const ComplaintForm = () => {
                     formikRef={formik}
                     placeholder="Pincode"
                     option={pincodes}
+                    value={formik.values.pincode}
                   />
                 </div>
                 <div className="TextBoxConatiner">
@@ -158,6 +153,7 @@ export const ComplaintForm = () => {
                     }}
                     formikRef={formik}
                     placeholder="address"
+                    value={formik.values.address}
                   />
                 </div>
               </div>
@@ -173,6 +169,7 @@ export const ComplaintForm = () => {
                   placeholder="Description"
                   rows={5}
                   multiLine={true}
+                  value={formik.values.description}
                 />
               </div>
               <CommonButton
