@@ -5,7 +5,6 @@ dotenv.config();
 const mongoose = require("mongoose");
 
 //URL
-// const mongoURL = "mongodb://localhost:27017/HotelDB"; //base URL + db name
 const mongoURL = process.env.ATLAS_MONGO_URL;
 
 const options = {

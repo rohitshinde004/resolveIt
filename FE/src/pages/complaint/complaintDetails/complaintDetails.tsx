@@ -19,10 +19,7 @@ import TextBox from "../../../components/common/textBox/textfield";
 import { Form, Formik } from "formik";
 import SendIcon from "@mui/icons-material/Send";
 import * as Yup from "yup";
-import {
-  addComplaintChat,
-  getComplaintChats,
-} from "../../../constant/apiUrls";
+import { addComplaintChat, getComplaintChats } from "../../../constant/apiUrls";
 
 interface ComplaintData {
   _id: string;
@@ -342,45 +339,53 @@ export const ComplaintDetails = () => {
                   </Formik>
                   <Box sx={{ mt: 2 }}>
                     {chatMessages.map((message, index) => (
-                      <Paper
-                        key={index}
-                        sx={{
-                          padding: "10px 10px",
-                          mb: 1,
-                          borderRadius: 4,
-                          boxShadow:
-                            "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
-                          backgroundColor:
-                            message.sender === userInfo._id
-                              ? "#e3f2fd"
-                              : "#f1f8e9",
-                          alignSelf:
-                            message.sender === userInfo._id
-                              ? "flex-end"
-                              : "flex-start",
-                        }}
-                      >
-                        <Typography variant="body2" sx={{ fontWeight: "bold" }}>
-                          {message.sender === userInfo._id
-                            ? "You"
-                            : userInfo.role === "ADMIN"
-                            ? "Citizen"
-                            : "Admin"}
-                        </Typography>
-                        <Typography variant="body1">
-                          {message.content}
-                        </Typography>
-                        <Typography variant="caption" sx={{ color: "gray" }}>
-                          {new Date(message.timestamp).toLocaleDateString(
-                            "en-US"
-                          )}{" "}
-                          {new Date(message.timestamp).toLocaleString("en-US", {
-                            hour: "numeric",
-                            minute: "numeric",
-                            hour12: true,
-                          })}
-                        </Typography>
-                      </Paper>
+                      <div className="chatWrapper">
+                        <Paper
+                          key={index}
+                          sx={{
+                            padding: "10px 10px",
+                            mb: 1,
+                            borderRadius: 4,
+                            boxShadow:
+                              "0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12)",
+                            backgroundColor:
+                              message.sender === userInfo._id
+                                ? "#e3f2fd"
+                                : "#f1f8e9",
+                            alignSelf:
+                              message.sender === userInfo._id
+                                ? "flex-end"
+                                : "flex-start",
+                          }}
+                        >
+                          <Typography
+                            variant="body2"
+                            sx={{ fontWeight: "bold" }}
+                          >
+                            {message.sender === userInfo._id
+                              ? "You"
+                              : userInfo.role === "ADMIN"
+                              ? "Citizen"
+                              : "Admin"}
+                          </Typography>
+                          <Typography variant="body1">
+                            {message.content}
+                          </Typography>
+                          <Typography variant="caption" sx={{ color: "gray" }}>
+                            {new Date(message.timestamp).toLocaleDateString(
+                              "en-US"
+                            )}{" "}
+                            {new Date(message.timestamp).toLocaleString(
+                              "en-US",
+                              {
+                                hour: "numeric",
+                                minute: "numeric",
+                                hour12: true,
+                              }
+                            )}
+                          </Typography>
+                        </Paper>
+                      </div>
                     ))}
                   </Box>
                 </>

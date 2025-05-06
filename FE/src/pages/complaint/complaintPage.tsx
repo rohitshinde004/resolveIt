@@ -38,7 +38,6 @@ export const ComplaintPage = () => {
   };
   const handleInprogressTab = () => {
     setloader(true);
-    console.log("userInfo.role ", userInfo.role);
     Instance(
       `${getComplaintsUrl}?status=inprogress${
         userInfo.role === "ADMIN"
@@ -95,7 +94,25 @@ export const ComplaintPage = () => {
         setloader(false);
       });
   };
-
+  const handleSearch = () => {
+    setloader(true);
+    Instance(
+      `${getComplaintsUrl}?status=inprogress${
+        userInfo.role === "ADMIN"
+          ? `&adminId=${userInfo._id}`
+          : `&userId=${userInfo._id}`
+      }`
+    )
+      .then((res) => {
+        console.log(res.data);
+        setComplaintList(res.data);
+        setloader(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setloader(false);
+      });
+  };
   useEffect(() => {
     handleInprogressTab();
   }, []);
@@ -104,7 +121,7 @@ export const ComplaintPage = () => {
       <div className="headerWrapper">
         <span className="headingText">Complaints</span>
         <div className="searchBarButtonWrapper">
-          <SearchField className="serachBar" />
+          {/* <SearchField className="serachBar" /> */}
           <CommonButton
             onClickCallBack={() => {
               navigate("/home/file-complaint");

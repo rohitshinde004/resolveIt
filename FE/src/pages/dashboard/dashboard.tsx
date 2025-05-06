@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./dashboard.scss";
 import Instance from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
+import { getComplaintsUrl } from "../../constant/apiUrls";
 
 interface Stats {
   title: string;
@@ -13,11 +14,26 @@ interface Stats {
 export const Dasboard = () => {
   const userInfo: any = JSON.parse(localStorage.getItem("user") || "{}");
   const [complaints, setComplaints] = useState([]);
+  const [doneComplaints, setDoneComplaints] = useState([]);
   const navigate = useNavigate();
 
+  const handleResolveTab = () => {
+    Instance(
+      `${getComplaintsUrl}?status=completed${
+        userInfo.role === "ADMIN"
+          ? `&adminId=${userInfo._id}`
+          : `&userId=${userInfo._id}`
+      }`
+    )
+      .then((res) => {
+        console.log(res.data);
+        setDoneComplaints(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
-    // if (userInfo._id === undefined) return;
-    // console.log("userInfo", userInfo);
     const fetchComplaints = async () => {
       try {
         const response = await Instance.get(`complaint/user/${userInfo._id}`);
@@ -28,11 +44,12 @@ export const Dasboard = () => {
     };
 
     fetchComplaints();
+    handleResolveTab();
   }, []);
 
   const stats = [
     { title: "Total Complaints", value: complaints.length },
-    { title: "Resolved Complaints", value: 5 },
+    { title: "Resolved Complaints", value: doneComplaints.length },
   ];
 
   return (
